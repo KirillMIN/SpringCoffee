@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+        <bean id="Cappuccino" class="com.example.springpj.entities.Coffee.Cappuccino">
+            <property name="name" value="Cappuccino"/>
+            <property name="price" value="100"/>
+            <property name="ingredients" value="moloko"/>
+        </bean>
+
+        <bean id="Cashier" class="com.example.springpj.entities.employers.Cashier">
+            <property name="name" value="Kirill"/>
+            <property name="position" value="cashier"/>
+        </bean>
+
+        <bean id="Barista" class="com.example.springpj.entities.employers.Barista">
+            <property name="name" value="Kirill"/>
+            <property name="position" value="barista"/>
+        </bean>
+
+        <bean id="Order" class="com.example.springpj.entities.Order.Order" depends-on="Cappuccino">
+            <property name="id" value="1"/>
+            <property name="employer" ref="Barista"/>
+            <property name="order">
+                <list>
+                    <ref bean="Cappuccino"/>
+                </list>
+            </property>
+        </bean>
+
+
+    <context:component-scan base-package="com.example.springpj"/>
+</beans>
